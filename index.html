@@ -134,6 +134,15 @@
 
 <div class="wrap">
 
+  <div class="panel hidden" id="resume-banner">
+    <h2>前回の続きがあります</h2>
+    <p class="cat-count" id="resume-info">保存されている回答があります。続きから再開しますか？</p>
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+      <button class="btn btn-primary" id="resume-continue">続きから再開する</button>
+      <button class="btn btn-secondary" id="resume-restart">最初からやり直す</button>
+    </div>
+  </div>
+
   <div class="panel" id="stage-panel">
     <h2>1. 回答のタイミングを選択してください</h2>
     <div class="cat-count">選択した時期に応じて、以下の質問が自動で表示されます。</div>
@@ -197,6 +206,7 @@ function tryGate(){
   if(val === GATE_PASSCODE){
     document.getElementById('gate-screen').classList.add('hidden');
     document.getElementById('app-content').classList.remove('hidden');
+    checkForDraft();
   } else {
     err.textContent = '合言葉が正しくありません。担当者にご確認ください。';
   }
@@ -220,7 +230,137 @@ const STAGE_EXPLAIN = {
 let currentStage = null;
 const answers = {}; // no -> value (string, array for multi, or object for compound)
 
+const DRAFT_KEY = 'pregnancy_survey_draft_v1';
+
+function saveDraft(){
+  try{
+    const draft = {
+      stage: currentStage,
+      answer_date: document.getElementById('answer-date').value,
+      answers: answers,
+      updated_at: new Date().toISOString()
+    };
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+  } catch(e){ /* 保存できない環境では無視 */ }
+}
+
+function loadDraft(){
+  try{
+    const raw = localStorage.getItem(DRAFT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e){ return null; }
+}
+
+function clearDraft(){
+  try{ localStorage.removeItem(DRAFT_KEY); } catch(e){ /* noop */ }
+}
+
+function checkForDraft(){
+  const draft = loadDraft();
+  if(draft && draft.answers && Object.keys(draft.answers).length > 0){
+    const d = draft.updated_at ? new Date(draft.updated_at) : null;
+    const when = d ? `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}` : '';
+    document.getElementById('resume-info').textContent = `保存されている回答があります（${when} 時点）。続きから再開しますか？`;
+    document.getElementById('resume-banner').classList.remove('hidden');
+    document.getElementById('resume-continue').onclick = ()=>{
+      applyDraft(draft);
+      document.getElementById('resume-banner').classList.add('hidden');
+    };
+    document.getElementById('resume-restart').onclick = ()=>{
+      clearDraft();
+      document.getElementById('resume-banner').classList.add('hidden');
+    };
+  }
+}
+
+function applyDraft(draft){
+  currentStage = draft.stage;
+  Object.keys(draft.answers).forEach(k=>{ answers[k] = draft.answers[k]; });
+  document.querySelectorAll('.stage-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.stage === currentStage);
+  });
+  if(STAGE_EXPLAIN[currentStage]) document.getElementById('stage-explain').textContent = STAGE_EXPLAIN[currentStage];
+  if(draft.answer_date) document.getElementById('answer-date').value = draft.answer_date;
+  renderForm();
+  restoreVisualState();
+}
+
+function restoreVisualState(){
+  const items = visibleItems();
+  items.forEach(it=>{
+    const val = answers[it.no];
+    if(val === undefined) return;
+    const inp = it.input;
+
+    if(inp.type === 'radio' || inp.type === 'radio_scale'){
+      const grp = document.querySelector(`[data-kind="choice"][data-no="${it.no}"]`);
+      if(grp){
+        grp.querySelectorAll('.opt-btn').forEach(b=>{ b.classList.toggle('selected', b.dataset.val === val); });
+      }
+    } else if(inp.type === 'checkbox_multi'){
+      const grp = document.querySelector(`[data-kind="multi"][data-no="${it.no}"]`);
+      if(grp && Array.isArray(val)){
+        grp.querySelectorAll('.opt-btn').forEach(b=>{ b.classList.toggle('selected', val.includes(b.dataset.val)); });
+      }
+    } else if(inp.type === 'slider' || inp.type === 'rpe'){
+      const wrap = document.querySelector(`[data-kind="slider"][data-no="${it.no}"]`);
+      if(wrap){
+        const range = wrap.querySelector('input[type=range]');
+        const label = wrap.querySelector('.slider-value');
+        range.value = val;
+        label.textContent = val + (inp.unit || '');
+      }
+    } else if(inp.type === 'week_day' || inp.type === 'duration_hm'){
+      const wrap = document.querySelector(`[data-kind="${inp.type}"][data-no="${it.no}"]`);
+      if(wrap && typeof val === 'object'){
+        wrap.querySelectorAll('input').forEach(i2=>{
+          if(val[i2.dataset.part] !== undefined) i2.value = val[i2.dataset.part];
+        });
+      }
+    } else if(inp.type === 'children'){
+      const wrap = document.querySelector(`[data-kind="children"][data-no="${it.no}"]`);
+      if(wrap && val && val.have){
+        const haveGrp = wrap.querySelector('[data-role="have"]');
+        haveGrp.querySelectorAll('.opt-btn').forEach(b=>{ b.classList.toggle('selected', b.dataset.val === val.have); });
+        if(val.have === 'いる'){
+          wrap.querySelector('[data-role="block"]').classList.remove('hidden');
+          const countInput = wrap.querySelector('[data-role="count"]');
+          countInput.value = val.count || 1;
+          countInput.dispatchEvent(new Event('input'));
+          setTimeout(()=>{
+            const agesDiv = wrap.querySelector('[data-role="ages"]');
+            (val.ages || []).forEach((a,i)=>{
+              const inp2 = agesDiv.querySelector(`[data-child-age="${i+1}"]`);
+              if(inp2) inp2.value = a;
+            });
+            const otherArea = wrap.querySelector('[data-role="other"]');
+            if(otherArea && val.other) otherArea.value = val.other;
+          }, 0);
+        }
+      }
+    } else {
+      const wrap = document.querySelector(`[data-kind][data-no="${it.no}"]`);
+      if(wrap){
+        const field = wrap.querySelector('input,textarea');
+        if(field) field.value = val;
+      }
+    }
+
+    if(answers[it.no + '_other'] !== undefined){
+      const otherBox = document.querySelector(`[data-other-for="${it.no}"]`);
+      if(otherBox){
+        otherBox.classList.remove('hidden');
+        const oinput = otherBox.querySelector('input');
+        if(oinput) oinput.value = answers[it.no + '_other'];
+      }
+    }
+  });
+  applyConditionals();
+  updateProgress();
+}
+
 document.getElementById('answer-date').valueAsDate = new Date();
+document.getElementById('answer-date').addEventListener('input', saveDraft);
 
 document.querySelectorAll('.stage-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -229,6 +369,7 @@ document.querySelectorAll('.stage-btn').forEach(btn=>{
     currentStage = btn.dataset.stage;
     document.getElementById('stage-explain').textContent = STAGE_EXPLAIN[currentStage];
     renderForm();
+    saveDraft();
   });
 });
 
@@ -577,6 +718,7 @@ function updateProgress(){
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-text').textContent = `${answered} / ${total} 項目`;
   document.getElementById('progress-pct').textContent = pct + '%';
+  saveDraft();
 }
 
 function formatAnswer(it){
@@ -633,6 +775,7 @@ async function submitToSheet(){
     const json = await resp.json();
     if(json && json.ok){
       statusEl.textContent = '回答を送信しました。ご協力ありがとうございました。';
+      clearDraft();
     } else {
       statusEl.textContent = '送信に失敗しました。念のため下のボタンでファイルを保存し、担当者にお送りください。';
     }
