@@ -14,6 +14,8 @@
     --teal:#2f6f68;
     --teal-dark:#1f4f4a;
     --teal-tint:#e7f0ee;
+    --amber:#c98a3a;
+    --amber-tint:#fbf1e2;
     --radius:14px;
     font-size:16px;
   }
@@ -24,132 +26,79 @@
     background:var(--paper);
     color:var(--ink);
     line-height:1.7;
-    padding-bottom:140px;
+    padding-bottom:120px;
   }
   header.top{ background:var(--teal-dark); color:#fff; padding:28px 20px 22px; }
   header.top h1{ margin:0 0 6px; font-size:1.35rem; font-weight:700; letter-spacing:.02em; }
   header.top p{ margin:0; color:#cfe4e0; font-size:.88rem; }
   .wrap{ max-width:720px; margin:0 auto; padding:0 16px; }
-  
   .panel{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:20px; margin-top:18px; }
-  .panel h2{ font-size:1.05rem; margin:0 0 4px; color:var(--teal-dark); }
-  .panel .cat-count{ font-size:.82rem; color:var(--sub); margin-bottom:14px; }
-  
-  .stage-select{ display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-top:10px; }
-  .stage-btn{ 
-    border:1.5px solid var(--line); 
-    background:#fff; 
-    border-radius:12px; 
-    padding:16px 10px; 
-    font-size:.92rem; 
-    font-weight:600; 
-    color:var(--ink); 
-    cursor:pointer; 
-    text-align:center; 
-    line-height:1.4; 
-    transition:all .15s ease; 
-    min-height:70px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-  }
-  .stage-btn small{ display:block; font-weight:400; color:var(--sub); font-size:.75rem; margin-top:4px; }
-  .stage-btn.active{ border-color:var(--teal); background:var(--teal-tint); color:var(--teal-dark); border-width:2px; font-weight:bold; }
-  
+  .panel h2{ font-size:1.02rem; margin:0 0 4px; color:var(--teal-dark); }
+  .panel .cat-count{ font-size:.78rem; color:var(--sub); margin-bottom:14px; }
+  .stage-select{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:10px; }
+  .stage-btn{ border:1.5px solid var(--line); background:#fff; border-radius:10px; padding:14px 8px; font-size:.86rem; font-weight:600; color:var(--ink); cursor:pointer; text-align:center; line-height:1.4; transition:all .15s ease; }
+  .stage-btn small{ display:block; font-weight:400; color:var(--sub); font-size:.72rem; margin-top:3px; }
+  .stage-btn.active{ border-color:var(--teal); background:var(--teal-tint); color:var(--teal-dark); }
   .meta-row{ display:flex; gap:12px; margin-top:16px; flex-wrap:wrap; }
-  .meta-field{ flex:1; min-width:100%; }
-  label.field-label{ display:block; font-size:.85rem; color:var(--sub); margin-bottom:6px; font-weight:600; }
+  .meta-field{flex:1; min-width:140px;}
+  label.field-label{ display:block; font-size:.8rem; color:var(--sub); margin-bottom:5px; }
   input[type=text], input[type=number], input[type=date], input[type=time], textarea{
-    width:100%; border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:1rem;
+    width:100%; border:1px solid var(--line); border-radius:8px; padding:10px 11px; font-size:.95rem;
     font-family:inherit; background:#fdfdfc; color:var(--ink);
   }
-  textarea{ min-height:80px; resize:vertical; }
-  input:focus, textarea:focus{ outline:2px solid var(--teal); outline-offset:1px; }
-
+  textarea{min-height:64px; resize:vertical;}
+  input:focus, textarea:focus{outline:2px solid var(--teal); outline-offset:1px;}
   #progress-bar{ position:sticky; top:0; z-index:20; background:var(--paper); padding:10px 16px 8px; border-bottom:1px solid var(--line); }
-  .progress-track{ height:8px; background:var(--line); border-radius:4px; overflow:hidden; }
+  .progress-track{ height:6px; background:var(--line); border-radius:4px; overflow:hidden; }
   .progress-fill{ height:100%; background:var(--teal); width:0%; transition:width .2s ease; }
-  .progress-label{ font-size:.78rem; color:var(--sub); margin-top:4px; display:flex; justify-content:space-between; }
-
-  section.category{ margin-top:24px; }
-  section.category .cat-header{ display:flex; align-items:baseline; justify-content:space-between; border-bottom:2px solid var(--teal); padding-bottom:8px; margin-bottom:12px; }
-  section.category .cat-header h2{ font-size:1.1rem; color:var(--teal-dark); margin:0; }
-  
-  .item{ padding:18px 0; border-bottom:1px solid var(--line); }
-  .item:last-child{ border-bottom:none; }
+  .progress-label{ font-size:.72rem; color:var(--sub); margin-top:4px; display:flex; justify-content:space-between; }
+  section.category{ margin-top:22px; }
+  section.category .cat-header{ display:flex; align-items:baseline; justify-content:space-between; border-bottom:2px solid var(--teal); padding-bottom:8px; margin-bottom:4px; }
+  section.category .cat-header h2{ font-size:1.05rem; color:var(--teal-dark); margin:0; }
+  section.category .cat-header .cnt{ font-size:.75rem; color:var(--sub); }
+  .item{ padding:16px 4px; border-bottom:1px solid var(--line); }
+  .item:last-child{border-bottom:none;}
   .item.hidden-cond{ display:none !important; }
-  .item .qtext{ font-size:1rem; font-weight:600; margin-bottom:10px; display:flex; gap:6px; align-items:flex-start; line-height:1.5; }
-  .item .qno{ color:var(--teal); font-weight:700; font-size:.9rem; flex-shrink:0; min-width:36px; }
-  
-  .opt-grid{ display:flex; flex-direction:column; gap:8px; }
-  .opt-btn{ 
-    border:1.5px solid var(--line); 
-    background:#fff; 
-    border-radius:10px; 
-    padding:12px 14px; 
-    font-size:.95rem; 
-    cursor:pointer; 
-    color:var(--ink); 
-    text-align:left; 
-    width:100%; 
-    transition:all .15s ease;
-  }
-  .opt-btn.selected{ background:var(--teal); border-color:var(--teal); color:#fff; font-weight:700; }
-
-  .slider-wrap{ padding:10px 4px 4px; }
-  .slider-value{ font-weight:700; color:var(--teal-dark); font-size:1.05rem; margin-bottom:8px; display:inline-block; background:var(--teal-tint); padding:4px 12px; border-radius:6px; }
-  input[type=range]{ width:100%; height:28px; accent-color:var(--teal); cursor:pointer; }
-  
-  .slider-scale-labels{ display:flex; justify-content:space-between; font-size:.78rem; color:var(--sub); margin-top:6px; }
+  .item .qtext{ font-size:.95rem; font-weight:600; margin-bottom:8px; display:flex; gap:6px; align-items:flex-start; }
+  .item .qno{ color:var(--teal); font-weight:700; font-size:.82rem; flex-shrink:0; min-width:34px; }
+  .item-note{ font-size:.76rem; color:var(--sub); margin:-4px 0 10px 40px; }
+  .opt-grid{ display:flex; flex-wrap:wrap; gap:8px; }
+  .opt-btn{ border:1.4px solid var(--line); background:#fff; border-radius:20px; padding:8px 14px; font-size:.85rem; cursor:pointer; color:var(--ink); }
+  .opt-btn.selected{ background:var(--teal); border-color:var(--teal); color:#fff; }
+  .slider-wrap{padding:6px 4px 0;}
+  .slider-value{ font-weight:700; color:var(--teal-dark); font-size:.95rem; margin-bottom:6px; display:inline-block; background:var(--teal-tint); padding:2px 10px; border-radius:6px; }
+  input[type=range]{ width:100%; accent-color:var(--teal); }
+  .slider-scale-labels{ display:flex; justify-content:space-between; font-size:.7rem; color:var(--sub); margin-top:2px; }
+  .unit-suffix{ font-size:.8rem; color:var(--sub); margin-left:6px; }
   .side-by-side{ display:flex; gap:10px; align-items:center; }
   .side-by-side .sub{ flex:1; }
-  .side-by-side .sub .lbl{ font-size:.78rem; color:var(--sub); margin-bottom:4px; }
-
-  #footer-bar{ 
-    position:fixed; 
-    bottom:0; 
-    left:0; 
-    right:0; 
-    background:#fff; 
-    border-top:1px solid var(--line); 
-    padding:12px 16px; 
-    display:flex; 
-    gap:8px; 
-    justify-content:space-between; 
-    z-index:30; 
-    box-shadow:0 -4px 14px rgba(0,0,0,.08); 
-    padding-bottom: max(12px, env(safe-area-inset-bottom));
-  }
-  .btn{ 
-    border:none; 
-    border-radius:10px; 
-    padding:14px 16px; 
-    font-size:.92rem; 
-    font-weight:700; 
-    cursor:pointer; 
-    flex:1; 
-    text-align:center;
-  }
-  .btn-primary{ background:var(--teal); color:#fff; }
-  .btn-secondary{ background:var(--teal-tint); color:var(--teal-dark); }
-  
-  .top-note{ font-size:.82rem; color:var(--sub); background:var(--teal-tint); border-radius:8px; padding:12px; margin-top:14px; }
+  .side-by-side .sub .lbl{ font-size:.72rem; color:var(--sub); margin-bottom:3px; }
+  .child-block{ border:1px dashed var(--line); border-radius:10px; padding:12px; margin-top:10px; background:#fafaf8; }
+  .child-age{ margin-top:8px; }
+  .child-age .lbl{ font-size:.8rem; color:var(--sub); margin-bottom:4px; }
+  #footer-bar{ position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--line); padding:12px 16px; display:flex; gap:10px; justify-content:center; z-index:30; box-shadow:0 -4px 14px rgba(0,0,0,.05); }
+  .btn{ border:none; border-radius:9px; padding:13px 18px; font-size:.9rem; font-weight:700; cursor:pointer; }
+  .btn-primary{background:var(--teal); color:#fff;}
+  .btn-secondary{background:var(--teal-tint); color:var(--teal-dark);}
+  .top-note{ font-size:.78rem; color:var(--sub); background:var(--teal-tint); border-radius:8px; padding:10px 12px; margin-top:14px; }
   #done-screen{ text-align:center; padding:60px 20px; }
-  #done-screen h2{ color:var(--teal-dark); }
-  .hidden{ display:none !important; }
-
-  @media (max-width: 500px) {
-    .stage-select { grid-template-columns: 1fr; gap: 8px; }
-    .stage-btn { min-height: auto; padding: 14px; text-align: left; align-items: flex-start; }
-    .stage-btn small { display: inline-block; margin-top: 2px; margin-left: 6px; }
-  }
+  #done-screen h2{color:var(--teal-dark);}
+  .hidden{display:none !important;}
 </style>
 </head>
 <body>
 
-<div id="app-content">
+<div id="gate-screen" style="max-width:400px;margin:80px auto;padding:0 20px;text-align:center;">
+  <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px 24px;">
+    <h1 style="font-size:1.1rem;color:var(--teal-dark);margin:0 0 6px;">妊娠期・産後 健康調査アンケート</h1>
+    <p style="font-size:.82rem;color:var(--sub);margin:0 0 20px;">担当者から伝えられた合言葉を入力してください</p>
+    <input type="text" id="gate-input" placeholder="合言葉" autocomplete="off" style="width:100%;border:1px solid var(--line);border-radius:8px;padding:12px;font-size:1rem;text-align:center;">
+    <div id="gate-error" style="color:#b3452f;font-size:.78rem;margin-top:8px;min-height:1.2em;"></div>
+    <button id="gate-submit" class="btn btn-primary" style="width:100%;margin-top:14px;">進む</button>
+  </div>
+</div>
 
+<div id="app-content" class="hidden">
 <header class="top">
   <div class="wrap">
     <h1>妊娠期・産後 健康調査アンケート</h1>
@@ -165,48 +114,55 @@
 </div>
 
 <div class="wrap">
+  <div class="panel hidden" id="resume-banner">
+    <h2>前回の続きがあります</h2>
+    <p class="cat-count" id="resume-info">保存されている回答があります。続きから再開しますか？</p>
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+      <button class="btn btn-primary" id="resume-continue">続きから再開する</button>
+      <button class="btn btn-secondary" id="resume-restart">最初からやり直す</button>
+    </div>
+  </div>
 
   <div class="panel" id="stage-panel">
     <h2>1. 回答のタイミングを選択してください</h2>
-    <div class="cat-count">選択した時期に応じて、必要な質問が自動で表示されます。</div>
+    <div class="cat-count">選択した時期に応じて、以下の質問が自動で表示されます。</div>
     <div class="stage-select">
-      <button class="stage-btn" data-stage="初回">初回 <small>妊娠期・最初の回答</small></button>
-      <button class="stage-btn" data-stage="2回目以降">2回目以降 <small>妊娠期・毎回</small></button>
-      <button class="stage-btn" data-stage="産後">産後 <small>産後1か月など</small></button>
+      <button class="stage-btn" data-stage="初回">初回<small>妊娠期・最初の回答</small></button>
+      <button class="stage-btn" data-stage="2回目以降">2回目以降<small>妊娠期・毎回</small></button>
+      <button class="stage-btn" data-stage="産後">産後<small>産後1か月など</small></button>
     </div>
-
     <div class="meta-row">
       <div class="meta-field">
         <label class="field-label">回答日</label>
         <input type="date" id="answer-date">
       </div>
     </div>
-    <div class="top-note hidden" id="stage-explain"></div>
+    <div class="top-note" id="stage-explain"></div>
   </div>
 
   <div id="form-area"></div>
-
 </div>
 
 <div id="footer-bar" class="hidden">
-  <button class="btn btn-secondary" id="btn-json">JSONダウンロード</button>
-  <button class="btn btn-secondary" id="btn-csv">CSVダウンロード</button>
-  <button class="btn btn-primary" id="btn-finish">回答を送信・完了</button>
+  <button class="btn btn-secondary" id="btn-json">JSONで保存</button>
+  <button class="btn btn-secondary" id="btn-csv">CSVで保存</button>
+  <button class="btn btn-primary" id="btn-finish">回答を確認して完了</button>
 </div>
 
 <div id="done-screen" class="hidden">
   <h2>ご回答ありがとうございました</h2>
-  <p id="submit-status">回答データが正常に保存されました。</p>
-  <button class="btn btn-primary" id="btn-json-2">JSONダウンロード</button>
-  <button class="btn btn-secondary" id="btn-csv-2">CSVダウンロード</button>
+  <p id="submit-status">送信しています…</p>
+  <p style="font-size:.8rem;color:var(--sub);">念のため、下のボタンからも回答データを保存できます。</p>
+  <button class="btn btn-primary" id="btn-json-2">JSONで保存</button>
+  <button class="btn btn-secondary" id="btn-csv-2">CSVで保存</button>
+  <div style="margin-top:14px;"><button class="btn btn-secondary" id="btn-back">回答画面に戻る</button></div>
 </div>
-
 </div>
 
 <script id="items-data" type="application/json">
 [
-  {"no": 1, "cat": "基本情報", "timing": "毎回", "input": {"type": "text", "label": "ID（診察券番号など）"}},
-  {"no": 2, "cat": "基本情報", "timing": "初回", "input": {"type": "text", "label": "氏名"}},
+  {"no": 1, "cat": "基本情報", "timing": "毎回", "input": {"type": "text", "label": "ID（診察券番号）"}},
+  {"no": 2, "cat": "基本情報", "timing": "毎回", "input": {"type": "text", "label": "氏名"}},
   {"no": 3, "cat": "基本情報", "timing": "産前のみ", "input": {"type": "week_day", "label": "妊娠週数・日数"}},
   {"no": 4, "cat": "基本情報", "timing": "初回", "input": {"type": "date", "label": "出産予定日"}},
   {"no": 5, "cat": "基本情報", "timing": "産後のみ", "input": {"type": "date", "label": "出産日"}},
@@ -215,59 +171,123 @@
   {"no": 8, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "本日の体重", "unit": "kg"}},
   {"no": 9, "cat": "基本情報", "timing": "初回", "input": {"type": "yearmonth", "label": "生年月"}},
   {"no": 10, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "現在の年齢", "unit": "歳"}},
-  {"no": 11, "cat": "基本情報", "timing": "初回", "input": {"type": "radio", "label": "婚姻状態", "options": ["未婚", "既婚", "その他"]}},
-  {"no": 12, "cat": "基本情報", "timing": "初回", "input": {"type": "radio", "label": "職業", "options": ["会社員・公務員", "自営業・自由業", "専業主婦", "パート・アルバイト", "その他"]}},
-  {"no": 13, "cat": "基本情報", "timing": "初回", "input": {"type": "radio", "label": "分娩歴", "options": ["初産", "経産"]}},
-  {"no": 14, "cat": "基本情報", "timing": "初回", "input": {"type": "number", "label": "経産の場合の分娩回数", "unit": "回"}, "show_if": {"no": 13, "in": ["経産"]}},
+  {"no": 11, "cat": "基本情報", "timing": "初回", "input": {"type": "radio", "label": "婚姻に関して", "options": ["未婚", "結婚", "その他"], "otherOption": "その他"}},
+  {"no": 12, "cat": "基本情報", "timing": "初回", "input": {"type": "radio", "label": "家族形態", "options": ["一人暮らし", "核家族", "核家族以外"]}},
+  {"no": 13, "cat": "基本情報", "timing": "初回", "input": {"type": "number", "label": "家族総人数", "unit": "人"}},
+  {"no": 14, "cat": "基本情報", "timing": "初回", "input": {"type": "children"}},
   {"no": 15, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "定期的に運動（健康のために行っている運動）をしていますか", "options": ["いいえ", "はい"]}},
   {"no": 16, "cat": "基本情報", "timing": "毎回", "input": {"type": "textarea", "label": "運動していない理由"}, "show_if": {"no": 15, "in": ["いいえ"]}},
   {"no": 17, "cat": "基本情報", "timing": "毎回", "input": {"type": "text", "label": "運動の種類"}, "show_if": {"no": 15, "in": ["はい"]}},
-  {"no": 18, "cat": "身体活動 (PPAQ)", "timing": "毎回", "input": {"type": "radio", "label": "準備や片付けを含む家事（掃除・洗濯など）", "options": ["行わなかった", "1日30分未満", "1日30分〜1時間未満", "1日1時間〜2時間未満", "1日2時間以上"]}},
-  {"no": 19, "cat": "身体活動 (PPAQ)", "timing": "毎回", "input": {"type": "radio", "label": "料理や食器洗い", "options": ["行わなかった", "1日30分未満", "1日30分〜1時間未満", "1日1時間〜2時間未満", "1日2時間以上"]}},
-  {"no": 20, "cat": "身体活動 (PPAQ)", "timing": "毎回", "input": {"type": "radio", "label": "買い物（移動時間含む）", "options": ["行わなかった", "1日30分未満", "1日30分〜1時間未満", "1日1時間〜2時間未満", "1日2時間以上"]}},
-  {"no": 21, "cat": "身体活動 (PPAQ)", "timing": "毎回", "input": {"type": "radio", "label": "子どもや家族の手助け・世話", "options": ["行わなかった", "1日30分未満", "1日30分〜1時間未満", "1日1時間〜2時間未満", "1日2時間以上"]}},
-  {"no": 22, "cat": "身体活動 (PPAQ)", "timing": "毎回", "input": {"type": "radio", "label": "仕事や通勤での移動・歩行", "options": ["行わなかった", "1日30分未満", "1日30分〜1時間未満", "1日1時間〜2時間未満", "1日2時間以上"]}},
-  {"no": 23, "cat": "身体活動 (PPAQ)", "timing": "毎回", "input": {"type": "radio", "label": "散歩やウォーキング（健康・レジャー目的）", "options": ["行わなかった", "1週間に30分未満", "1週間に30分〜1時間未満", "1週間に1時間〜2時間未満", "1週間に2時間以上"]}},
-  {"no": 24, "cat": "身体活動 (PPAQ)", "timing": "毎回", "input": {"type": "radio", "label": "マタニティヨガやストレッチなどの軽い体操", "options": ["行わなかった", "1週間に30分未満", "1週間に30分〜1時間未満", "1週間に1時間〜2時間未満", "1週間に2時間以上"]}},
-  {"no": 25, "cat": "身体活動 (PPAQ)", "timing": "毎回", "input": {"type": "radio", "label": "テレビ鑑賞・読書・座って過ごす時間", "options": ["1日2時間未満", "1日2時間〜4時間未満", "1日4時間〜6時間未満", "1日6時間以上"]}},
-  {"no": 26, "cat": "腰痛・骨盤帯痛", "timing": "毎回", "input": {"type": "radio", "label": "現在、腰痛（腰の痛み）がありますか", "options": ["ない", "たまにある", "常にある"]}},
-  {"no": 27, "cat": "腰痛・骨盤帯痛", "timing": "毎回", "input": {"type": "slider", "label": "腰痛の強さ（0:全く痛くない 〜 10:耐えられないほどの痛み）", "min": 0, "max": 10, "step": 1, "unit": ""}, "show_if": {"no": 26, "in": ["たまにある", "常にある"]}},
-  {"no": 28, "cat": "腰痛・骨盤帯痛", "timing": "毎回", "input": {"type": "radio", "label": "現在、骨盤帯痛（恥骨・お尻・股関節周辺の痛み）がありますか", "options": ["ない", "たまにある", "常にある"]}},
-  {"no": 29, "cat": "腰痛・骨盤帯痛", "timing": "毎回", "input": {"type": "slider", "label": "骨盤帯痛の強さ（0:全く痛くない 〜 10:耐えられないほどの痛み）", "min": 0, "max": 10, "step": 1, "unit": ""}, "show_if": {"no": 28, "in": ["たまにある", "常にある"]}},
-  {"no": 30, "cat": "腰痛・骨盤帯痛 (Quebec/Pelvic)", "timing": "毎回", "input": {"type": "radio", "label": "寝返りを打つときの困難さ・痛み", "options": ["全く問題ない", "少し困難", "かなり困難", "全くできない"]}},
-  {"no": 31, "cat": "腰痛・骨盤帯痛 (Quebec/Pelvic)", "timing": "毎回", "input": {"type": "radio", "label": "長時間（30分以上）座り続けることの困難さ", "options": ["全く問題ない", "少し困難", "かなり困難", "全くできない"]}},
-  {"no": 32, "cat": "腰痛・骨盤帯痛 (Quebec/Pelvic)", "timing": "毎回", "input": {"type": "radio", "label": "立ち上がるときの困難さ", "options": ["全く問題ない", "少し困難", "かなり困難", "全くできない"]}},
-  {"no": 33, "cat": "腰痛・骨盤帯痛 (Quebec/Pelvic)", "timing": "毎回", "input": {"type": "radio", "label": "長時間（15分以上）歩くことの困難さ", "options": ["全く問題ない", "少し困難", "かなり困難", "全くできない"]}},
-  {"no": 34, "cat": "腰痛・骨盤帯痛 (Quebec/Pelvic)", "timing": "毎回", "input": {"type": "radio", "label": "階段の上り下りの困難さ", "options": ["全く問題ない", "少し困難", "かなり困難", "全くできない"]}},
-  {"no": 35, "cat": "睡眠評価 (PSQI)", "timing": "毎回", "input": {"type": "time", "label": "過去1ヶ月間、通常何時に就寝しましたか"}},
-  {"no": 36, "cat": "睡眠評価 (PSQI)", "timing": "毎回", "input": {"type": "number", "label": "就寝してから実際に眠りにつくまでにかかった時間（分）", "unit": "分"}},
-  {"no": 37, "cat": "睡眠評価 (PSQI)", "timing": "毎回", "input": {"type": "time", "label": "過去1ヶ月間、通常何時に起床しましたか"}},
-  {"no": 38, "cat": "睡眠評価 (PSQI)", "timing": "毎回", "input": {"type": "number", "label": "実際に眠った合計時間（時間）", "unit": "時間"}},
-  {"no": 39, "cat": "睡眠評価 (PSQI)", "timing": "毎回", "input": {"type": "radio", "label": "夜間や早朝に目が覚めてしまう頻度", "options": ["ない", "週1回未満", "週1〜2回", "週3回以上"]}},
-  {"no": 40, "cat": "睡眠評価 (PSQI)", "timing": "毎回", "input": {"type": "radio", "label": "トイレのために起きる頻度", "options": ["ない", "週1回未満", "週1〜2回", "週3回以上"]}},
-  {"no": 41, "cat": "睡眠評価 (PSQI)", "timing": "毎回", "input": {"type": "radio", "label": "過去1ヶ月間の睡眠の質全体に関する自己評価", "options": ["非常に良い", "かなり良い", "やや悪い", "非常に悪い"]}},
-  {"no": 42, "cat": "気分・メンタルヘルス (EPDS)", "timing": "毎回", "input": {"type": "radio", "label": "笑うことができたし、物事の楽しい側面を見ることができた", "options": ["いつも通りできた", "あまりできなかった", "明らかにできなかった", "全くできなかった"]}},
-  {"no": 43, "cat": "気分・メンタルヘルス (EPDS)", "timing": "毎回", "input": {"type": "radio", "label": "物事を楽しみにして待つことができた", "options": ["いつも通り期待できた", "あまり期待できなかった", "明らかに期待できなかった", "全く期待できなかった"]}},
-  {"no": 44, "cat": "気分・メンタルヘルス (EPDS)", "timing": "毎回", "input": {"type": "radio", "label": "物事がうまくいかない時、自分を不必要に責めた", "options": ["はい、たいていそうだった", "はい、時々そうだった", "めったになかった", "全くなかった"]}},
-  {"no": 45, "cat": "気分・メンタルヘルス (EPDS)", "timing": "毎回", "input": {"type": "radio", "label": "はっきりした理由もないのに不安になったり心配になったりした", "options": ["全くなかった", "めったになかった", "はい、時々あった", "はい、しょっちゅうあった"]}},
-  {"no": 46, "cat": "気分・メンタルヘルス (EPDS)", "timing": "毎回", "input": {"type": "radio", "label": "はっきりした理由もないのに恐怖やパニックにおそわれた", "options": ["はい、かなりあった", "はい、時々あった", "めったになかった", "全くなかった"]}},
-  {"no": 47, "cat": "気分・メンタルヘルス (EPDS)", "timing": "毎回", "input": {"type": "radio", "label": "やるべきことが積み重なって大変だと感じた", "options": ["はい、たいてい対処できなかった", "はい、うまく対処できないことがあった", "いいえ、たいていはうまく対処できた", "いいえ、普段通りうまく対処できた"]}},
-  {"no": 48, "cat": "気分・メンタルヘルス (EPDS)", "timing": "毎回", "input": {"type": "radio", "label": "不幸せを感じて眠りにくかった", "options": ["はい、たいていそうだった", "はい、時々そうだった", "めったになかった", "全くなかった"]}},
-  {"no": 49, "cat": "気分・メンタルヘルス (EPDS)", "timing": "毎回", "input": {"type": "radio", "label": "悲しくなったり惨めになったりした", "options": ["はい、たいていそうだった", "はい、かなり頻繁にあった", "めったになかった", "全くなかった"]}},
-  {"no": 50, "cat": "気分・メンタルヘルス (EPDS)", "timing": "毎回", "input": {"type": "radio", "label": "不幸せを感じて泣けてきた", "options": ["はい、たいていそうだった", "はい、かなり頻繁にあった", "たまにあった", "全くなかった"]}},
-  {"no": 51, "cat": "バランスに対する自信度 (ABC Scales)", "timing": "毎回", "input": {"type": "slider", "label": "家の中を歩くとき、バランスを崩したりふらついたりしない自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
-  {"no": 52, "cat": "バランスに対する自信度 (ABC Scales)", "timing": "毎回", "input": {"type": "slider", "label": "階段を上り下りするとき、バランスを崩さない自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
-  {"no": 53, "cat": "バランスに対する自信度 (ABC Scales)", "timing": "毎回", "input": {"type": "slider", "label": "床に落ちた物を拾い上げるとき、バランスを崩さない自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
-  {"no": 54, "cat": "バランスに対する自信度 (ABC Scales)", "timing": "毎回", "input": {"type": "slider", "label": "混雑した商業施設や屋外を歩くとき、バランスを崩さない自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
-  {"no": 55, "cat": "自由記述", "timing": "毎回", "input": {"type": "textarea", "label": "その他、体調や懸念事項について自由に記述してください（任意）"}}
+  {"no": 18, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "運動頻度（1週間あたり）", "unit": "回/週"}, "show_if": {"no": 15, "in": ["はい"]}},
+  {"no": 19, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "1回あたりの運動時間", "unit": "分"}, "show_if": {"no": 15, "in": ["はい"]}},
+  {"no": 20, "cat": "基本情報", "timing": "毎回", "input": {"type": "rpe", "label": "自覚的運動強度"}, "show_if": {"no": 15, "in": ["はい"]}},
+  {"no": 21, "cat": "基本情報", "timing": "初回", "input": {"type": "radio", "label": "妊娠前の勤務形態", "options": ["主婦", "正社員・常勤職員", "フルタイム契約社員・職員", "パートタイム職員", "臨時雇用職員・アルバイト", "学生", "その他"], "otherOption": "その他"}},
+  {"no": 22, "cat": "基本情報", "timing": "初回", "input": {"type": "text", "label": "妊娠前の職業", "placeholder": "記入例：会社員、事務職、看護師、保育士、介護職、サービス業 など"}},
+  {"no": 23, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "現在の勤務形態", "options": ["以前から専業主婦", "現在も働いている", "産休中", "育休中", "退職した", "現在も通学している", "休学中", "その他"], "otherOption": "その他"}},
+  {"no": 24, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "産休開始週数（妊娠何週～）", "unit": "週"}, "show_if": {"no": 23, "in": ["産休中"]}},
+  {"no": 25, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "退職時週数（妊娠何週のとき）", "unit": "週"}, "show_if": {"no": 23, "in": ["退職した"]}},
+  {"no": 26, "cat": "基本情報", "timing": "毎回", "input": {"type": "textarea", "label": "退職理由"}, "show_if": {"no": 23, "in": ["退職した"]}},
+  {"no": 27, "cat": "基本情報", "timing": "毎回", "input": {"type": "text", "label": "現在の職業", "placeholder": "記入例：会社員、事務職、看護師、保育士、介護職、サービス業 など"}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 28, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "現在の1か月の就労日数", "unit": "日/月"}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 29, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "現在の平均1日労働時間", "unit": "時間"}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 30, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "現在の出張の有無", "options": ["ある", "ない"]}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 31, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "現在の残業の有無", "options": ["ある", "ない"]}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 32, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "残業時間（平均）", "unit": "時間/日"}, "show_if": {"no": 31, "in": ["ある"]}},
+  {"no": 33, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "現在の夜勤の有無", "options": ["ある", "ない"]}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 34, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "夜勤日数", "unit": "日/月"}, "show_if": {"no": 33, "in": ["ある"]}},
+  {"no": 35, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "現在、労働中に多い姿勢", "options": ["座位", "立位", "どちらも半々"]}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 36, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "現在、重い物を持ったり運ぶこと", "options": ["ある", "ない"]}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 37, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "現在の勤務先の休息・仮眠施設の有無", "options": ["ある", "ない"]}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 38, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "休息・仮眠施設をいつでも利用できる", "options": ["はい", "いいえ"]}, "show_if": {"no": 37, "in": ["ある"]}},
+  {"no": 39, "cat": "基本情報", "timing": "毎回", "input": {"type": "checkbox_multi", "label": "現在利用している制度（複数選択可）", "options": ["時差通勤", "就労時間の短縮", "年休の利用", "健診時の休暇", "在宅勤務", "その他"], "otherOption": "その他"}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 40, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "現在の主な通勤手段", "options": ["電車", "徒歩", "車", "自転車", "その他"], "otherOption": "その他"}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 41, "cat": "基本情報", "timing": "毎回", "input": {"type": "number", "label": "現在の通勤時間（片道）", "unit": "分"}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 42, "cat": "基本情報", "timing": "毎回", "input": {"type": "textarea", "label": "現在、就労において困っていること・心配なこと"}, "show_if": {"no": 23, "in": ["現在も働いている", "現在も通学している"]}},
+  {"no": 43, "cat": "基本情報", "timing": "毎回", "input": {"type": "checkbox_multi", "label": "パートナー・配偶者の育休について（複数選択可）", "options": ["産前取得", "産後取得", "どちらもなし"]}},
+  {"no": 44, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "産前取得状況", "options": ["取得済", "予定"]}, "show_if": {"no": 43, "in": ["産前取得"]}},
+  {"no": 45, "cat": "基本情報", "timing": "毎回", "input": {"type": "radio", "label": "産後取得状況", "options": ["取得済", "予定"]}, "show_if": {"no": 43, "in": ["産後取得"]}},
+  {"no": 46, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "食事の準備をする（調理・食事の準備・皿洗い）", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 47, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "座って、子どもの着替えや入浴、食事の世話をする", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 48, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "立って、子どもの着替えや入浴、食事の世話をする", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 49, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "立ってまたは座って子どもと遊ぶ", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 50, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "歩いてまたは走って子どもと遊ぶ", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 51, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "子どもを抱いて移動する", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 52, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "高齢者の世話（介護）をする", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 53, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "就労ではなく、座ってパソコンを使うか、書き物をする", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 54, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "テレビまたはビデオをみる", "options": ["していない", "1日に30分未満", "1日に30分から約2時間未満", "1日に2時間から約4時間未満", "1日に4時間から約6時間未満", "1日に6時間以上"]}},
+  {"no": 55, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "就労ではなく、座って話をする・読書をする・または電話をする", "options": ["していない", "1日に30分未満", "1日に30分から約2時間未満", "1日に2時間から約4時間未満", "1日に4時間から約6時間未満", "1日に6時間以上"]}},
+  {"no": 56, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "ペットと遊ぶ", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 57, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "簡単な掃除をする（ベッドを整える、洗濯、アイロンがけ、物を片付ける）", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 58, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "買い物をする（食物、衣服、そのほかの用品）", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 59, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "労力のかかる掃除をする（掃除機がけ、モップがけ、掃き掃除、窓拭き）", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 60, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "芝刈り機にのって芝や雑草を刈る", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 61, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "押し式自動芝刈り機を使用し、芝や雑草をかる、落ち葉を集める、ガーデニングをする", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 62, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "楽しみや運動ではなく、ある場所（バス、仕事、訪問する場所のような）に行くためにゆっくり歩く", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 63, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "楽しみや運動ではなく、ある場所（バス、仕事、学校までのような）に行くために早く歩く", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 64, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "楽しみや運動ではなく、ある場所（バス、仕事、訪問する場所のような）に行くために自転車にのる", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 65, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "車やバス・電車を運転したり乗ったりする", "options": ["していない", "1日に30分未満", "1日に30分から約1時間未満", "1日に1時間から約2時間未満", "1日に2時間から約3時間未満", "1日に3時間以上"]}},
+  {"no": 66, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "楽しみやまたは運動のためにゆっくり歩く", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 67, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "楽しみやまたは運動のために早く歩く", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 68, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "楽しみやまたは運動のために坂道を早く歩いて上がる", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 69, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "ジョギング", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 70, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "出産前運動クラス（スイミングなど）", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 71, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "水泳", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 72, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "ダンス", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 73, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "text", "label": "その他に楽しみや運動のために行っている活動①（自由記載）"}},
+  {"no": 74, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "活動①に費やした時間", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 75, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "text", "label": "その他に楽しみや運動のために行っている活動②（自由記載）"}},
+  {"no": 76, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "活動②に費やした時間", "options": ["していない", "1週間に30分未満", "1週間に30分から約1時間未満", "1週間に1時間から約2時間未満", "1週間に2時間から約3時間未満", "1週間に3時間以上"]}},
+  {"no": 77, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "教室でまたは仕事中に座っている", "options": ["していない", "1日に30分未満", "1日に30分から約2時間未満", "1日に2時間から約4時間未満", "1日に4時間から約6時間未満", "1日に6時間以上"]}},
+  {"no": 78, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "仕事でもの（3kgのお米以上の重さ）を運ぶ間、ゆっくり歩くか、立っている", "options": ["していない", "1日に30分未満", "1日に30分から約2時間未満", "1日に2時間から約4時間未満", "1日に4時間から約6時間未満", "1日に6時間以上"]}},
+  {"no": 79, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "仕事でものを運ばない状態で、ゆっくり歩くか、立っている", "options": ["していない", "1日に30分未満", "1日に30分から約2時間未満", "1日に2時間から約4時間未満", "1日に4時間から約6時間未満", "1日に6時間以上"]}},
+  {"no": 80, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "仕事でもの（3kgのお米以上の重さ）を運ぶ間、早く歩くか、立っている", "options": ["していない", "1日に30分未満", "1日に30分から約2時間未満", "1日に2時間から約4時間未満", "1日に4時間から約6時間未満", "1日に6時間以上"]}},
+  {"no": 81, "cat": "妊娠中の身体活動に関する質問", "timing": "産前のみ", "input": {"type": "radio_scale", "label": "仕事でものを運ばない状態で、早く歩く", "options": ["していない", "1日に30分未満", "1日に30分から約2時間未満", "1日に2時間から約4時間未満", "1日に4時間から約6時間未満", "1日に6時間以上"]}},
+  {"no": 82, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "家の中を歩くとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 83, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "階段を上り下りするとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 84, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "前かがみになってクローゼットの床からスリッパを拾うとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 85, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "目の高さの棚から小さな缶を取るとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 86, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "つま先立ちで頭上の物に手を伸ばすとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 87, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "椅子に立って何かを取ろうとするとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 88, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "床を掃くとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 89, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "家の外に出て、車道に停めた車まで歩くとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 90, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "車に乗り降りするとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 91, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "駐車場を横切ってショッピングモールまで歩くとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 92, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "スロープを上り下りするとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 93, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "人が素早く通り過ぎる混雑したショッピングモールを歩くとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 94, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "ショッピングモールを歩く際に人にぶつかられたとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 95, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "手すりを握りながらエスカレーターに乗る／降りるとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 96, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "荷物を持っていて手すりを握れない状態でエスカレーターに乗る／降りるとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 97, "cat": "バランスに対する自信度", "timing": "毎回", "input": {"type": "slider", "label": "凍った歩道を歩くとき、バランスを崩したりふらついたりしないという自信", "min": 0, "max": 100, "step": 10, "unit": "%"}},
+  {"no": 98, "cat": "痛みの評価", "timing": "毎回", "input": {"type": "slider", "label": "腰部の痛みの程度", "min": 0, "max": 10, "step": 1, "unit": ""}},
+  {"no": 99, "cat": "痛みの評価", "timing": "毎回", "input": {"type": "slider", "label": "殿部の痛みの程度", "min": 0, "max": 10, "step": 1, "unit": ""}},
+  {"no": 100, "cat": "痛みの評価", "timing": "毎回", "input": {"type": "slider", "label": "股関節の痛みの程度", "min": 0, "max": 10, "step": 1, "unit": ""}},
+  {"no": 101, "cat": "痛みの評価", "timing": "毎回", "input": {"type": "slider", "label": "恥骨の痛みの程度", "min": 0, "max": 10, "step": 1, "unit": ""}}
 ]
 </script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  const SECRET_PASS = "1234"; // 合言葉の設定
+
+  const gateScreen = document.getElementById("gate-screen");
+  const appContent = document.getElementById("app-content");
+  const gateInput = document.getElementById("gate-input");
+  const gateSubmit = document.getElementById("gate-submit");
+  const gateError = document.getElementById("gate-error");
+
   const rawData = JSON.parse(document.getElementById("items-data").textContent);
   let currentStage = null;
   let answers = {};
+
+  // 合言葉認証
+  gateSubmit.addEventListener("click", () => {
+    if(gateInput.value.trim() === SECRET_PASS || SECRET_PASS === "") {
+      gateScreen.classList.add("hidden");
+      appContent.classList.remove("hidden");
+    } else {
+      gateError.textContent = "合言葉が違います";
+    }
+  });
 
   const today = new Date().toISOString().split("T")[0];
   document.getElementById("answer-date").value = today;
@@ -287,10 +307,9 @@ document.addEventListener("DOMContentLoaded", () => {
     formArea.innerHTML = "";
 
     const explain = document.getElementById("stage-explain");
-    explain.classList.remove("hidden");
-    if(currentStage === "初回") explain.textContent = "【初回】全体の設問を表示しています。";
-    else if(currentStage === "2回目以降") explain.textContent = "【2回目以降】継続調査用の設問を表示しています。";
-    else explain.textContent = "【産後】産後調査用の設問を表示しています。";
+    if(currentStage === "初回") explain.textContent = "【初回】すべての質問が表示されます。";
+    else if(currentStage === "2回目以降") explain.textContent = "【2回目以降】継続調査用の設問が表示されます。";
+    else explain.textContent = "【産後】産後用の設問が表示されます。";
 
     document.getElementById("progress-bar").classList.remove("hidden");
     document.getElementById("footer-bar").classList.remove("hidden");
@@ -323,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if(item.input.type === "text" || item.input.type === "number" || item.input.type === "date" || item.input.type === "time") {
           const unitHtml = item.input.unit ? `<span class="unit-suffix">${item.input.unit}</span>` : "";
-          html += `<div style="display:flex;align-items:center;"><input type="${item.input.type}" data-no="${item.no}" class="inp-field">${unitHtml}</div>`;
+          html += `<div style="display:flex;align-items:center;"><input type="${item.input.type}" data-no="${item.no}" class="inp-field" placeholder="${item.input.placeholder || ''}">${unitHtml}</div>`;
         } else if(item.input.type === "textarea") {
           html += `<textarea data-no="${item.no}" class="inp-field"></textarea>`;
         } else if(item.input.type === "week_day") {
@@ -336,10 +355,16 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="sub"><div class="lbl">年</div><input type="number" data-no="${item.no}" data-part="y" class="inp-field" placeholder="1990"></div>
             <div class="sub"><div class="lbl">月</div><input type="number" data-no="${item.no}" data-part="m" class="inp-field" placeholder="1"></div>
           </div>`;
-        } else if(item.input.type === "radio") {
+        } else if(item.input.type === "radio" || item.input.type === "radio_scale") {
           html += `<div class="opt-grid">`;
           item.input.options.forEach(opt => {
             html += `<button type="button" class="opt-btn" data-no="${item.no}" data-val="${opt}">${opt}</button>`;
+          });
+          html += `</div>`;
+        } else if(item.input.type === "checkbox_multi") {
+          html += `<div class="opt-grid">`;
+          item.input.options.forEach(opt => {
+            html += `<button type="button" class="opt-btn multi-btn" data-no="${item.no}" data-val="${opt}">${opt}</button>`;
           });
           html += `</div>`;
         } else if(item.input.type === "slider") {
@@ -348,6 +373,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <input type="range" min="${item.input.min}" max="${item.input.max}" step="${item.input.step}" value="${item.input.min}" data-no="${item.no}" class="slider-field">
             <div class="slider-scale-labels"><span>${item.input.min}</span><span>${item.input.max}</span></div>
           </div>`;
+        } else if(item.input.type === "rpe") {
+          html += `<div class="slider-wrap">
+            <span class="slider-value" id="val-${item.no}">6 (非常に楽)</span>
+            <input type="range" min="6" max="20" step="1" value="6" data-no="${item.no}" class="slider-field">
+            <div class="slider-scale-labels"><span>6 (非常に楽)</span><span>20 (限界)</span></div>
+          </div>`;
+        } else if(item.input.type === "children") {
+          html += `<div class="child-block"><p style="margin:0 0 8px;font-size:.85rem;">お子様の人数や年齢に関する設問（必要に応じて入力）</p><input type="text" data-no="${item.no}" class="inp-field" placeholder="例：長男（3歳）、長女（1歳）"></div>`;
         }
 
         itemEl.innerHTML += html;
@@ -359,11 +392,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     attachEvents();
     checkConditions();
-    updateProgress(filtered.length);
+    calcProgress();
   }
 
   function attachEvents() {
-    document.querySelectorAll(".opt-btn").forEach(btn => {
+    document.querySelectorAll(".opt-btn:not(.multi-btn)").forEach(btn => {
       btn.addEventListener("click", () => {
         const no = btn.dataset.no;
         const parent = btn.parentElement;
@@ -375,11 +408,26 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    document.querySelectorAll(".multi-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const no = btn.dataset.no;
+        btn.classList.toggle("selected");
+        const parent = btn.parentElement;
+        const selected = Array.from(parent.querySelectorAll(".multi-btn.selected")).map(b => b.dataset.val);
+        answers[no] = selected.join(", ");
+        checkConditions();
+        calcProgress();
+      });
+    });
+
     document.querySelectorAll(".slider-field").forEach(s => {
       s.addEventListener("input", () => {
         const no = s.dataset.no;
         const item = rawData.find(i => i.no == no);
-        document.getElementById(`val-${no}`).textContent = s.value + (item.input.unit || "");
+        const valDisp = document.getElementById(`val-${no}`);
+        if(valDisp) {
+          valDisp.textContent = s.value + (item.input.unit || "");
+        }
         answers[no] = s.value;
         calcProgress();
       });
@@ -397,10 +445,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function checkConditions() {
     rawData.forEach(item => {
       if(item.show_if) {
-        const targetVal = answers[item.show_if.no];
+        const targetVal = answers[item.show_if.no] || "";
         const targetEl = document.getElementById(`item-${item.no}`);
         if(targetEl) {
-          if(targetVal && item.show_if.in.includes(targetVal)) {
+          const match = item.show_if.in.some(v => targetVal.includes(v));
+          if(match) {
             targetEl.classList.remove("hidden-cond");
           } else {
             targetEl.classList.add("hidden-cond");
@@ -424,10 +473,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("progress-fill").style.width = pct + "%";
     document.getElementById("progress-text").textContent = `${answeredCount} / ${total} 項目回答`;
     document.getElementById("progress-pct").textContent = pct + "%";
-  }
-
-  function updateProgress(total) {
-    calcProgress();
   }
 
   function downloadFile(content, fileName, contentType) {
@@ -456,6 +501,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("footer-bar").classList.add("hidden");
     document.getElementById("progress-bar").classList.add("hidden");
     document.getElementById("done-screen").classList.remove("hidden");
+    document.getElementById("submit-status").textContent = "回答データが正常に記録されました。";
   });
 });
 </script>
